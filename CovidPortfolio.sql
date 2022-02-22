@@ -69,6 +69,15 @@ where dea.continent is not null)
 #order by 2,3 );
 Select * , (CommingVaccinated/population)*100
 from PopsVacc ;
+
+#Finding Sum of total cases,total death and death percentage
+select SUM(new_cases) as total_Cases, SUM(cast(new_deaths as signed )) as total_deaths, SUM(cast(new_deaths as signed)) as total_Deaths, SUM(cast(new_deaths as signed))/SUM(New_Cases)*100 as DeathPercentage
+from Myportfolio.coviddeaths
+where continent is not null
+#group by date
+order  by 1,2
+
+
 #temp table
 
 select dea.continent , dea.location, dea.date , dea.population, vac.new_vaccinations
