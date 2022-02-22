@@ -16,6 +16,14 @@ from Myportfolio.coviddeaths
 where Location like '%States%'
 order by 1, 2;
 
+#Selecting location and calculating total count
+select location, SUM(cast(new_deaths as signed)) as TotalDeathCount
+from Myportfolio.coviddeaths
+where continent not in ('Europe','Africa','Oceania','Asia','North America','South America')
+and location not in ('World','European Union','International')
+group by location
+order by TotalDeathCount desc;
+
 #looking total cases vs Population
 #shows what percent of population got covid
 select Location,date,total_cases_per_million,Population,(total_cases_per_million/population)*100 as PercetPopulationInfected
